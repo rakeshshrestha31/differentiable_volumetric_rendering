@@ -1,0 +1,36 @@
+data:
+  path: ../idr/data/idr_ocrtoc_dataset
+  ignore_image_idx: []
+  classes: ['dvr_dinosaur10_camera3']
+  dataset_name: DTU
+  n_views: 3
+  input_type: null
+  train_split: null
+  val_split: null
+  test_split: null
+  cache_fields: True
+  split_model_for_images: true
+  depth_range: [0., 1.0]
+model:
+  c_dim: 0
+  encoder: null
+  patch_size: 2
+  lambda_image_gradients: 1.
+  lambda_normal: 0.1
+training:
+  out_dir:  out/idr_ocrtoc/dinosaur10_camera3/ours_rgb
+  n_training_points: 512
+  n_eval_points: 2000
+  model_selection_metric: mask_intersection
+  model_selection_mode: maximize
+  batch_size: 1
+  batch_size_val: 1
+  scheduler_milestones: [3000, 5000]
+  scheduler_gamma: 0.5
+  depth_loss_on_world_points: True
+  validate_every: 5000
+  visualize_every: 10000
+generation:
+  upsampling_steps: 4
+  refinement_step: 30
+
