@@ -1,9 +1,9 @@
 data:
-  path: ../idr/data/idr_ocrtoc_dataset
+  path: /local-scratch4/rakesh/toc_dataset/dvr_ocrtoc_dataset2
   ignore_image_idx: []
-  classes: ['dvr_dinosaur10_camera3']
+  classes: ['tanker_camera3']
   dataset_name: DTU
-  n_views: 3
+  n_views: 64
   input_type: null
   train_split: null
   val_split: null
@@ -18,9 +18,9 @@ model:
   lambda_image_gradients: 1.
   lambda_normal: 0.1
 training:
-  out_dir:  out/idr_ocrtoc/dinosaur10_camera3/ours_rgb
-  n_training_points: 512
-  n_eval_points: 2000
+  out_dir:  out/idr_ocrtoc/tanker_camera3_64/ours_rgb
+  n_training_points: 2048
+  n_eval_points: 8000
   model_selection_metric: mask_intersection
   model_selection_mode: maximize
   batch_size: 1
