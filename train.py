@@ -169,7 +169,8 @@ if __name__ == '__main__':
                                     loss_val_best=metric_val_best)
 
             # Exit if necessary
-            if exit_after > 0 and (time.time() - t0) >= exit_after:
+            # if exit_after > 0 and (time.time() - t0) >= exit_after:
+            if epoch_it > 2000:
                 logger_py.info('Time limit reached. Exiting.')
                 checkpoint_io.save('model.pt', epoch_it=epoch_it, it=it,
                                 loss_val_best=metric_val_best)
