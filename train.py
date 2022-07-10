@@ -19,6 +19,7 @@ if __name__ == '__main__':
     )
     parser.add_argument('config', type=str, help='Path to config file.')
     parser.add_argument('--no-cuda', action='store_true', help='Do not use cuda.')
+    parser.add_argument('--scene', type=str, default='', help='scene to train')
     parser.add_argument('--exit-after', type=int, default=-1,
                         help='Checkpoint and exit after specified number of '
                             'seconds with exit code 2.')
@@ -27,6 +28,13 @@ if __name__ == '__main__':
     cfg = config.load_config(args.config, 'configs/default.yaml')
     is_cuda = (torch.cuda.is_available() and not args.no_cuda)
     device = torch.device("cuda" if is_cuda else "cpu")
+
+    # update config
+    if args.scene:
+        orig_scene = cfg['data']['classes'][0]
+        cfg['data']['classes'] = [args.scene]
+        cfg['training']['out_dir'] \
+                = cfg['training']['out_dir'].replace(orig_scene, args.scene)
 
     # Shorthands
     out_dir = cfg['training']['out_dir']
